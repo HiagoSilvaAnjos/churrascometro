@@ -73,9 +73,9 @@ const calcChurras = () => {
     // Resultado
     resultChurrasElement.style.display = 'flex';
 
-    resultChurrasElement.children[0].innerText = `${lengthTotalBeef}g de Carne`;
-    resultChurrasElement.children[1].innerText = `${totalBeerPeople}ml de Cerveja`;
-    resultChurrasElement.children[2].innerText = `${totalDrinksPeople}ml de Bebidas`;
+    resultChurrasElement.children[0].innerText = `${lengthTotalBeef / 1000} kg de Carne`;
+    resultChurrasElement.children[1].innerText = `${Math.ceil(totalBeerPeople / 355)} Latas de cerveja`;
+    resultChurrasElement.children[2].innerText = `${Math.ceil(totalDrinksPeople / 2000)} Garrafas de Bebidas`;
 
 }   
 
@@ -91,18 +91,18 @@ const beefPeople = (duartionEvent) => {
 // Função que calcula a quantidade de carne por pessoa
 const beerPeople = (duartionEvent) => {
     if (duartionEvent >= 6) {
-        return 2500;
+        return 2000;
     } else {
-        return 1500;
+        return 1200;
     }
 }
 
 // Função que calcula a quantidade de bebidas(refrigerante-agua) por pessoa
 const drinksPeople = (duarationEvent) => {
     if (duarationEvent >= 6) {
-        return 1400;
+        return 1500;
     } else {
-        return 800;
+        return 1000;
     }
 }
 
