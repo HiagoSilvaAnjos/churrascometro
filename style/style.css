@@ -110,5 +110,6 @@ body {
 
 .container .error::placeholder {
     font-style: italic;
+    color: rgb(105, 21, 21);
 }
 
