@@ -7,8 +7,6 @@ const isValidInputAdult = () => getValueInputAdult.value.trim().length > 0;
 const isValidInputKid = () => getValueInputkid.value.trim().length > 0;
 const isValidInputHours = () => getHoursDuration.value.trim().length > 0;
 
-
-
 const calcChurras = () => {
 
     let validateAdult = isValidInputAdult();
@@ -30,11 +28,11 @@ const calcChurras = () => {
     }
 
     if (!validateKid) {
-        getValueInputkid.classList.add('error');
+        return getValueInputkid.classList.add('error');
     }
 
     if (!validateHours) {
-        getHoursDuration.classList.add('error');
+       return getHoursDuration.classList.add('error');
     }
 
     alert("Tudo certo");

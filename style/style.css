@@ -105,7 +105,7 @@ body {
 /* Utilites */
 
 .container .error {
-    border: 2px solid red;
+    border: 1px solid red;
 }
 
 .container .error::placeholder {
