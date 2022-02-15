@@ -56,7 +56,6 @@ body {
 
 .container input:focus {
     background-color: rgba(0, 0, 0, 0.603);
-    border: 2px solid rgb(20, 35, 53);
 }
 
 .container input::placeholder {
@@ -102,3 +101,14 @@ body {
         font-size: 1.7em;
     }
 }
+
+/* Utilites */
+
+.container .error {
+    border: 2px solid red;
+}
+
+.container .error::placeholder {
+    font-style: italic;
+}
+
