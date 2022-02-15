@@ -41,7 +41,7 @@ body {
     padding: 20px 0px;
 }
 
-.container input {
+.inputs {
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0.39);
     outline: none;
@@ -54,11 +54,11 @@ body {
     font-size: 18px;;
 }
 
-.container input:focus {
+.inputs:focus {
     background-color: rgba(0, 0, 0, 0.603);
 }
 
-.container input::placeholder {
+.inputs::placeholder {
     font-weight: normal;
     color: rgba(255, 255, 255, 0.459);
 }
@@ -76,10 +76,38 @@ body {
     transition: transform 0.5s;
 }
 
+
 .button-calc:hover {
     transform: scale(1.02);
     color: rgb(255, 255, 255);
     background-color: rgb(41, 83, 83);
+}
+
+@keyframes churrasResult {
+    from {
+        transform: translateY(70px)
+    }
+    to {
+        transform: translateY(0px)
+    }
+}
+
+.result-churras {
+    background-color: rgba(0, 0, 0, 0.603);
+    color: white;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 350px;
+    padding: 10px 0px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    animation: churrasResult 2s;
+}
+
+.result-churras p {
+    margin: 6px 0px;
 }
 
 @media (max-width: 520px) {
@@ -94,6 +122,10 @@ body {
     .button-calc {
         width: 80%;
     }
+
+    .result-churras {
+        width: 80%;
+    }
 }
 
 @media (max-width: 300px) {
@@ -104,12 +136,11 @@ body {
 
 /* Utilites */
 
-.container .error {
+.error {
     border: 1px solid red;
 }
 
-.container .error::placeholder {
+.error::placeholder {
     font-style: italic;
     color: rgb(105, 21, 21);
 }
-
