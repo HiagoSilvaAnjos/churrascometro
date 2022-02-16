@@ -64,30 +64,39 @@ const calcChurras = () => {
     }
 
     // Quantidade de adultos
-    let lengthAdult = getValueInputAdult.value;
+    const lengthAdult = getValueInputAdult.value;
+
+    // Quantidade de adultos que não bebem
+    const lengthAdultNotBeer = getValueInputAdultNotBeer.value;
+
+    // Quantidade de adolescente
+    const lengthAdolescent = getValueInputAdolescent.value;
 
     // Quantidade de Crianças
-    let lengthKids = getValueInputKid.value;
+    const lengthKids = getValueInputKid.value;
 
     // Quantidade Horas
-    let duarationEvent = getHoursDuration.value;
+    const duarationEvent = getHoursDuration.value;
 
     // Calcular Quantidade de carne
-    let totalGramsBeefPeople = beefPeople(duarationEvent);
+    const totalGramsBeefPeople = beefPeople(duarationEvent);
 
-    let lengthTotalBeef = totalGramsBeefPeople * lengthAdult + ((totalGramsBeefPeople / 2) * lengthKids); 
-    console.log(`Total carnes: ${lengthTotalBeef}`)  ;
+    const adults = parseInt(lengthAdult) + parseInt(lengthAdultNotBeer) + parseInt(lengthAdolescent);
+
+    const lengthTotalBeef = totalGramsBeefPeople * adults + ((totalGramsBeefPeople / 2) * lengthKids); 
+    console.log(`Total carnes: ${lengthTotalBeef}`);
 
     //Calcular Quantidade de cerveja
-    let totalLitersBeerPeople = beerPeople(duarationEvent);
+    const totalLitersBeerPeople = beerPeople(duarationEvent);
     
-    let totalBeerPeople = totalLitersBeerPeople * lengthAdult;
+    const totalBeerPeople = totalLitersBeerPeople * lengthAdult;
     console.log(`Total cerveja: ${totalBeerPeople}`);
 
     //Calcular Quantidade de bebidas
-    let toralLitersDrinksPeople = drinksPeople(duarationEvent);
+    const toralLitersDrinksPeople = drinksPeople(duarationEvent);
+    const drinks = parseInt(lengthAdultNotBeer) + parseInt(lengthAdolescent);
 
-    let totalDrinksPeople = toralLitersDrinksPeople * lengthAdult + ((toralLitersDrinksPeople / 2) * lengthKids); 
+    const totalDrinksPeople = toralLitersDrinksPeople * drinks + ((toralLitersDrinksPeople / 2) * lengthKids); 
     console.log(`Total bebidas: ${totalDrinksPeople}`);
 
     // Resultado
@@ -146,6 +155,16 @@ const removeErrorAdultNotBeer = (getValueInputAdultNotBeer) => {
     }
 }
 
+// Remover error input Adolescentes
+const removeErrorAdolescent = (getValueInputAdolescent) => {
+
+    let validateAdolescent = isValidInputAdolescent();
+
+    if(validateAdolescent) {
+        return getValueInputAdolescent.classList.remove('error');
+    }
+}
+
 // Remover error input Crianças
 const removeErrorKid = (getValueInputKid) => {
 
@@ -170,6 +189,10 @@ const removeErrorHours = (getHoursDuration) => {
 
 
 getValueInputAdult.addEventListener('change', () => removeErrorAdult(getValueInputAdult));
+
+getValueInputAdultNotBeer.addEventListener('change', () => removeErrorAdultNotBeer(getValueInputAdultNotBeer));
+
+getValueInputAdolescent.addEventListener('change', () => removeErrorAdolescent(getValueInputAdolescent));
 
 getValueInputKid.addEventListener('change', () => removeErrorKid(getValueInputKid));
 
