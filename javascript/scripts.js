@@ -1,4 +1,6 @@
 const getValueInputAdult = document.querySelector('.input-adults-value');
+const getValueInputAdultNotBeer = document.querySelector('.input-adults-value-notBeer');
+const getValueInputAdolescent = document.querySelector('.input-adolescent-value');
 const getValueInputKid = document.querySelector('.input-kids-value');
 const getHoursDuration = document.querySelector('.input-duration');
 const buttonStartCalc = document.querySelector('.button-calc');
@@ -6,22 +8,29 @@ const resultChurrasElement = document.querySelector('.result-churras');
 
 // Validação dos inputs
 const isValidInputAdult = () => getValueInputAdult.value.trim().length > 0;
+const isValidInputAdultNotBeer = () => getValueInputAdultNotBeer.value.trim().length > 0;
+const isValidInputAdolescent = () => getValueInputAdolescent.value.trim().length > 0;
 const isValidInputKid = () => getValueInputKid.value.trim().length > 0;
 const isValidInputHours = () => getHoursDuration.value.trim().length > 0;
 
+// Calcular churrasco
 const calcChurras = () => {
 
     let validateAdult = isValidInputAdult();
+    let validateAdultNotBeer = isValidInputAdultNotBeer();
+    let validateAdolescent = isValidInputAdolescent();
     let validateKid = isValidInputKid();
     let validateHours = isValidInputHours();
 
-    const validateInputs = validateAdult || validateKid || validateHours;
+    const validateInputs = validateAdult || validateAdultNotBeer || validateAdolescent || validateKid || validateHours;
 
-    console.log(`Adulto:${validateAdult} Criança:${validateKid} Horas:${validateHours}`)
+    console.log(`Adulto:${validateAdult} Adulto que não bebe: ${validateAdultNotBeer} Adolescente: ${validateAdolescent} Criança:${validateKid} Horas:${validateHours}`)
 
     // Se todos os inputs etiverem vazios
     if (!validateInputs) {
         getValueInputAdult.classList.add('error');
+        getValueInputAdultNotBeer.classList.add('error');
+        getValueInputAdolescent.classList.add('error');
         getValueInputKid.classList.add('error');
         getHoursDuration.classList.add('error');
         resultChurrasElement.style.display = 'none';
@@ -33,10 +42,21 @@ const calcChurras = () => {
         return getValueInputAdult.classList.add('error');
     } 
 
+    if(!validateAdultNotBeer) {
+        resultChurrasElement.style.display = 'none';
+        return getValueInputAdultNotBeer.classList.add('error');
+    }
+
+    if(!validateAdolescent) {
+        resultChurrasElement.style.display = 'none';
+        return getValueInputAdolescent.classList.add('error');
+    }
+
     if (!validateKid) {
         resultChurrasElement.style.display = 'none';
         return getValueInputKid.classList.add('error');
     }
+
 
     if (!validateHours) {
         resultChurrasElement.style.display = 'none';
@@ -113,6 +133,16 @@ const removeErrorAdult = (getValueInputAdult) => {
 
     if (validateAdult) {
         return getValueInputAdult.classList.remove('error');
+    }
+}
+
+// Remover error input Adultos que não bebem
+const removeErrorAdultNotBeer = (getValueInputAdultNotBeer) => {
+
+    let validateAdultNotBeer = isValidInputAdultNotBeer();
+
+    if(validateAdultNotBeer) {
+        return getValueInputAdultNotBeer.classList.remove('error');
     }
 }
 
