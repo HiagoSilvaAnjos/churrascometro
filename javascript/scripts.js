@@ -22,20 +22,6 @@ const calcChurras = () => {
     let validateKid = isValidInputKid();
     let validateHours = isValidInputHours();
 
-    const validateInputs = validateAdult || validateAdultNotBeer || validateAdolescent || validateKid || validateHours;
-
-    console.log(`Adulto:${validateAdult} Adulto que não bebe: ${validateAdultNotBeer} Adolescente: ${validateAdolescent} Criança:${validateKid} Horas:${validateHours}`)
-
-    // Se todos os inputs etiverem vazios
-    if (!validateInputs) {
-        getValueInputAdult.classList.add('error');
-        getValueInputAdultNotBeer.classList.add('error');
-        getValueInputAdolescent.classList.add('error');
-        getValueInputKid.classList.add('error');
-        getHoursDuration.classList.add('error');
-        resultChurrasElement.style.display = 'none';
-    }
-
     // Se algum dos inputs tiverem vazios
     if (!validateAdult) {
         resultChurrasElement.style.display = 'none';
@@ -80,30 +66,27 @@ const calcChurras = () => {
 
     // Calcular Quantidade de carne
     const totalGramsBeefPeople = beefPeople(duarationEvent);
-
-    const adults = parseInt(lengthAdult) + parseInt(lengthAdultNotBeer) + parseInt(lengthAdolescent);
-
-    const lengthTotalBeef = totalGramsBeefPeople * adults + ((totalGramsBeefPeople / 2) * lengthKids); 
+    const sumAdultsAndAdolescents = parseInt(lengthAdult) + parseInt(lengthAdultNotBeer) + parseInt(lengthAdolescent);
+    const sumKids = (totalGramsBeefPeople / 2) * lengthKids;
+    const lengthTotalBeef = totalGramsBeefPeople * sumAdultsAndAdolescents + sumKids; 
     console.log(`Total carnes: ${lengthTotalBeef}`);
 
     //Calcular Quantidade de cerveja
     const totalLitersBeerPeople = beerPeople(duarationEvent);
-    
     const totalBeerPeople = totalLitersBeerPeople * lengthAdult;
     console.log(`Total cerveja: ${totalBeerPeople}`);
 
     //Calcular Quantidade de bebidas
     const toralLitersDrinksPeople = drinksPeople(duarationEvent);
-    const drinks = parseInt(lengthAdultNotBeer) + parseInt(lengthAdolescent);
-
-    const totalDrinksPeople = toralLitersDrinksPeople * drinks + ((toralLitersDrinksPeople / 2) * lengthKids); 
+    const sumDrinksAdultsAndAdolecents = parseInt(lengthAdultNotBeer) + parseInt(lengthAdolescent);
+    const sumDrinksKids = (toralLitersDrinksPeople / 2) * lengthKids;
+    const totalDrinksPeople = toralLitersDrinksPeople * sumDrinksAdultsAndAdolecents + sumDrinksKids; 
     console.log(`Total bebidas: ${totalDrinksPeople}`);
 
     // Resultado
     resultChurrasElement.style.display = 'flex';
-
-    resultChurrasElement.children[0].innerText = `${lengthTotalBeef / 1000} kg de Carne`;
-    resultChurrasElement.children[1].innerText = `${Math.ceil(totalBeerPeople / 355)} Latas de cerveja`;
+    resultChurrasElement.children[0].innerText = `${lengthTotalBeef / 1000} kg de Carnes`;
+    resultChurrasElement.children[1].innerText = `${Math.ceil(totalBeerPeople / 355)} Latas de Cerveja`;
     resultChurrasElement.children[2].innerText = `${Math.ceil(totalDrinksPeople / 2000)} Garrafas de Bebidas`;
 
 }   
